@@ -1,3 +1,6 @@
+#author: YashnMori
+
+#Importing necessary libs
 import requests
 import bs4
 import csv
@@ -10,8 +13,6 @@ soup = bs4.BeautifulSoup(res.text,'lxml')
 
 
 # # Method 1
-
-
 file= open('axisltefportfolio.csv','w', newline='')
 writer=csv.writer(file)
 
@@ -39,13 +40,10 @@ file.close()
 csv_df = pd.read_csv('axisltefportfolio.csv',header=1,encoding='cp1252')
 csv_df
 
-
-
 #new_ df for pie chart
 csv_pie_df = pd.DataFrame (csv_df, columns = ['Name','% of Total Holdings','Mcap'])
 #renaming df
 csv_pie_df = csv_pie_df.rename(columns={'Name': 'Stocks', '% of Total Holdings': 'Percentage_Holdings', 'Mcap':'Mcap'})
-
 csv_pie_df.head()
 
 
@@ -71,7 +69,6 @@ newcsv_pie_df
 csvothers_row = {'Stocks':'Others', 'Percentage_Holdings': csv_sum_others.Percentage_Holdings }
 #append row to the dataframe
 newcsv_pie_df = newcsv_pie_df.append(csvothers_row, ignore_index=True)
-
 newcsv_pie_df
 
 
@@ -100,7 +97,6 @@ new_df = df[["Stock Invested in","Sector","Value(Mn)","% of Total Holdings","Qua
 
 #saving new file
 new_df.to_csv (r'F:\New folder\export_dataframe.csv', index = False, header=True)
-
 new_df
 
 
@@ -108,7 +104,6 @@ new_df
 pie_df = pd.DataFrame (new_df, columns = ['Stock Invested in','% of Total Holdings','M-Cap'])
 #renaming df
 pie_df = pie_df.rename(columns={'Stock Invested in': 'Stocks', '% of Total Holdings': 'Percentage_Holdings', 'M-Cap':'Market Cap'})
-
 pie_df.head()
 
 
@@ -149,16 +144,3 @@ fig.gca().add_artist(centre_circle)
 #ax1.axis('equal')  
 #plt.tight_layout()
 plt.show()
-
-
-
-
-
-
-
-
-# In[ ]:
-
-
-
-
